@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+.main{
+    position: relative;
+    height: 1117px;
+    background: linear-gradient(90deg, #85F6B8 0%, rgba(142, 217, 235, 0.85) 99.84%);;
+}
+
+.container{
+    position: absolute;
+    background: #fff;
+    width: 571px;
+    height: 784px;
+    left: 420px;
+    top: 120px;
+}
+
+.title{
+    padding-top: 2.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 32px;
+    text-align: center;
+    color: #555555;
+}
+
+.text{
+    margin: 40px;
+    padding: 0 15px;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    color: #555555;
+}
