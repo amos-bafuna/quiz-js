@@ -3,26 +3,26 @@
 }
 
 body{
+    background: linear-gradient(90deg, #85F6B8 0%, rgba(142, 217, 235, 0.85) 99.84%);
     margin: 0;
+    padding: 0;
 }
 
 .main{
-    position: relative;
-    height: 1117px;
-    background: linear-gradient(90deg, #85F6B8 0%, rgba(142, 217, 235, 0.85) 99.84%);;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container{
-    position: absolute;
+    margin: 40px 20px;
+    padding: 20px;
     background: #fff;
     width: 500px;
-    height: 700px;
-    left: 410px;
-    top: 100px;
 }
 
 .title{
-    padding-top: 2.5rem;
+    padding-top: 1rem;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 32px;
