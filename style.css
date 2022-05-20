@@ -19,7 +19,7 @@ body{
     padding: 40px 10px;
     background: #fff;
     width: 500px;
-    height: 625px;
+    min-height: 625px;
 }
 
 .title{
@@ -102,4 +102,78 @@ form{
     height: 10px;
     background-color: green;
     border-radius: 5px;
+}
+
+.form-check{
+    margin:  30px 40px;
+    padding: 15px;
+    border: solid 1px #c2bebe;
+}
+
+.form-check-label{
+    color: #555555;
+}
+
+.group-question-btn{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 40px;
+    margin-bottom: 30px;
+}
+
+.btn-question{
+    display: inline-block;
+    border: none;
+    padding: 10px 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+}
+
+.btn-quit{
+    background: #EC880C;
+}
+
+.btn-next{
+    background: #028A3D;
+}
+
+/* Result style */
+
+.result-status{
+    margin: O 40px;
+    text-align: center;
+}
+
+.success{
+    font-size: 150px;
+    color: #02883c;
+}
+
+.wrong{
+    font-size: 150px;
+    color: #f00;
+}
+
+.result-score{
+    margin: 25px 40px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    font-size: 18px;
+    color: #555555;
+}
+
+.go-home{
+    margin: 20px 40px;
+    text-align: center;
+}
+
+.go-home-btn{
+    background: #0880D6;
+    border: none;
+    padding: 14px 45px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #fff;
 }
