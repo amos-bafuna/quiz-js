@@ -81,6 +81,15 @@ form{
 
 /* Questions style */
 
+.question-section{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #555555;
+}
+
 .progress-container{
     background-color: #e2d8d8;
     margin: 0 40px;
