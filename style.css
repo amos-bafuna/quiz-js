@@ -63,6 +63,11 @@ form{
     border: 1px solid #c0bcbc;;
 }
 
+.Error{
+    font-size: 12px;
+    color: red;
+}
+
 .group-submit{
     text-align: center;
 }
@@ -176,4 +181,8 @@ form{
     font-family: 'Inter', sans-serif;
     font-size: 18px;
     color: #fff;
+}
+
+#page2, #page3, #page4{
+    display: none;
 }
