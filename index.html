@@ -15,7 +15,7 @@
     <main class="main">
         <div class="container" id="page1">
             <h1 class="title">JavaScript Quiz</h1>
-            <p class="text">
+            <p class="question-text">
                 Évaluez vos connaissances en JavaScript en répondant aux questions que nous avons spécialement sélectionnées pour vous.
                 C'est fun et c'est gratuit.
             </p>
@@ -41,47 +41,21 @@
 
     <main class="main">
         <div class="container" id="page2">
-            <button onclick="move()">Run</button>
-            <p class="text">
-                Quel est le type d'un fichier javascript ?
-            </p>
+            <button onclick="setTimer()">Run</button>
+            <p class="question-text questionFocus"></p>
             <div class="question-section">
                 <div class="question-number">Question 1/15</div>
-                <div class="time"></div>
+                <div class="time">60</div>
             </div>
-            <div class="timer">
+            <div class="progress-bar">
                 <div class="progress-container">
                     <div class="Loading"></div>
-                  </div>
+                </div>
             </div>
-            <form action="">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                      .js
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                      .txt
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                    <label class="form-check-label" for="exampleRadios3">
-                      .md
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                    <label class="form-check-label" for="exampleRadios3">
-                      .pdf
-                    </label>
-                </div>
+            <form action="" class="form-question">
                 <div class="group-question-btn">
                     <button type="quit" class="btn-quit btn-question">Quiter</button>
-                    <button type="submit" class="btn-next btn-question">Suivant</button>
+                    <button type="submit" class="btn-next btn-question" disabled>Suivant</button>
                 </div>
             </form>
         </div>
@@ -91,7 +65,7 @@
     <main class="main">
         <div class="container" id="page3">
             <h1 class="title">Joseph</h1>
-            <p class="text">
+            <p class="question-text">
                 amosbafuna24@gmail.com
             </p>
             <div class="result-status">
@@ -109,7 +83,7 @@
     <main class="main">
         <div class="container" id="page4">
             <h1 class="title">Joseph</h1>
-            <p class="text">
+            <p class="question-text">
                 amosbafuna24@gmail.com
             </p>
             <div class="result-status">
