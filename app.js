@@ -1,5 +1,3 @@
-
-// creating an array and passing the number, questions, options, and answers
 let questions = [
   {
   numb: 1,
@@ -67,135 +65,157 @@ let questions = [
   ]
 }]
 
+let homePage = document.querySelector('#page1');
+let questionPage = document.querySelector('#page2');
+let resultPage = document.querySelector('#page3');
+
+let questionFocus = document.querySelector(".questionFocus");
+let currentQuestion = document.querySelector(".question-number");
+let check1 = document.querySelector(".check1");
+let check2 = document.querySelector(".check2");
+let check3 = document.querySelector(".check3");
+let check4 = document.querySelector(".check4");
+let btnNext = document.querySelector(".btn-next");
+let btnQuit = document.querySelector(".btn-quit");
+let allRadio = document.querySelectorAll("#rad");
+let radio = document.querySelector("#rad");
+let count = 0;
+let score = 0;
+
+
+let form = document.querySelector("form");
+form.addEventListener("submit", function(e){
+e.preventDefault()
+
+let userName = document.querySelector(".input1").value;
+let userEmail = document.querySelector(".input2").value;
+
+if(!(userName !== '' && userEmail !== '')){
+  errorName.innerHTML = 'N’oubliez pas de renseigner votre nom avant de commencer le Quiz.';
+  errorEmail.innerHTML = 'N’oubliez pas de renseigner votre email avant de commencer le Quiz.';
+}
+/*  else if(validateEmail(userEmail)){
+  errorEmail.innerHTML = 'Veillez saissir un email valide.';
+} */
+else{
+  homePage.style.display = 'none';
+  questionPage.style.display = 'block';
+}
+})
+
+
+
 // Timer management */
 let i = 0;
 let time = 60;
 function setTimer() {
-  if (i == 0) {
-    i = 1;
-    let elem = document.querySelector(".Loading");
-    let timeLeft = document.querySelector(".time")
-    let width = 100;
-    let id = setInterval(frame, 1000);
-    function frame() {
-      if (width < 1) {
-        clearInterval(id);
-        i = 0;
-        time = 60;
-      } else {
-        width -= 1.6666;
-        time--;
-        elem.style.width = width + "%";
-        timeLeft.innerHTML = time;
-      }
+if (i == 0) {
+  i = 1;
+  let elem = document.querySelector(".Loading");
+  let timeLeft = document.querySelector(".time")
+  let width = 100;
+  let id = setInterval(frame, 500);
+  function frame() {
+    if (width < 1) {
+      clearInterval(id);
+      i = 0;
+      time = 60;
+      timeOut();
+    } else {
+      width -= 1.6666;
+      time--;
+      elem.style.width = width + "%";
+      timeLeft.innerHTML = time;
     }
   }
 }
-
-
-let btnNext = document.querySelector(".btn-next");
-let selectedAnswer;
-let questionResult;
-let result = 0;
-let currentQuestion = 0;
-
-
-function showQuestion(questionIndex){
-
-  let questionText = document.querySelector(".questionFocus");
-  let questionNumber = document.querySelector(".question-number");
-  
-  questionText.innerHTML = questions[questionIndex].question;
-  questionNumber.innerHTML = questions[questionIndex].numb + "/" + questions.length;
-
-  for(let index = 0; index < questions[questionIndex].options.length; index++){
-    let formQuestion = document.querySelector(".form-question");
-    let formCheck = document.createElement("div");
-    formCheck.classList.add('form-check');
-
-    let inputCheck = document.createElement("input");
-    let labelCheck = document.createElement("label");
-
-    inputCheck.setAttribute("type", "radio");
-    inputCheck.setAttribute("name", "optionName");
-    inputCheck.setAttribute("id", "option"+index);
-    inputCheck.setAttribute("value", questions[questionIndex].options[index]);
-
-    labelCheck.classList.add("form-check-label");
-    labelCheck.setAttribute("for", "option"+index)
-    labelCheck.innerHTML = questions[questionIndex].options[index];
-
-    formCheck.appendChild(inputCheck);
-    formCheck.appendChild(labelCheck);
-    formQuestion.prepend(formCheck);
-  }
-
-  let choosen = document.querySelector(".form-question");
-  let radioButtons = document.querySelectorAll('input[name="optionName"]');
-  choosen.addEventListener("click", function (){
-      for (const radioButton of radioButtons) {
-          if(radioButton.checked) {
-              selectedAnswer = radioButton.value;
-              btnNext.removeAttribute('disabled');
-              console.log(selectedAnswer);
-              break;
-          }
-      }
-  })
 }
 
+function validateEmail(email){
+let emailReg = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/i);
+let valid = emailReg.test(email);
 
+if(!valid) {
+    return false;
+} else {
+    return true;
+}
+}
 
+function showResult(){
+let titleResult = document.querySelector('.title-result');
+let emailResult = document.querySelector('.email-result');
 
-let errorName = document.querySelector(".errorName");
-let errorEmail = document.querySelector(".errorEmail");
+questionPage.style.display = 'none';
+resultPage.style.display = 'block';
 
-let form = document.querySelector("form");
-form.addEventListener("submit", function(e){
-  e.preventDefault()
+titleResult.innerHTML = userName;
+emailResult.innerHTML = userEmail;
+console.log(score);
+}
 
-  let page1 = document.getElementById("page1");
-  let page2 = document.getElementById("page2");
-  let page3 = document.getElementById("page3");
-
-  let userName = document.querySelector(".input1").value;
-  let userEmail = document.querySelector(".input2").value;
-
-  if(!(userName !== '' && userEmail !== '')){
-    errorName.innerHTML = 'N’oubliez pas de renseigner votre nom avant de commencer le Quiz.';
-    errorEmail.innerHTML = 'N’oubliez pas de renseigner votre email avant de commencer le Quiz.';
-    
-  }
-  else{
-    page1.style.display = 'none';
-    page2.style.display = 'block';
-
-    let main = document.querySelector(".main");
-    let container = document.querySelector(".container");
-
-    function init(){
-      main.removeChild(container);
-      
-      let newContainer = document.createElement('div');
-      newContainer.classList.add('container');
-    
-      main.appendChild(newContainer);
-    }
-
-    showQuestion(currentQuestion);
-    btnNext.addEventListener('click', (e) => {
-      e.preventDefault();
-      init();
-      currentQuestion += 1;
-      showQuestion(currentQuestion);
-      if(selectedAnswer == questions[questionIndex].answer){
-        questionResult++;
-      }
-    })
-
-    console.log(questionResult)
-  }
+allRadio.forEach(elem =>{
+elem.addEventListener('click', (e)=>{
+  btnNext.removeAttribute('disabled');
+})
 })
 
-// currentQuestion++;
-// showQuestions(currentQuestion);
+function init(){
+btnNext.setAttribute('disabled', 'disabled');
+}
+
+function showQuestion(){
+selectedAnswer = document.querySelector("input[type='radio']:checked");
+//console.log(selectedAnswer.nextElementSibling.textContent);
+if(count<questions.length-1){
+  if(selectedAnswer.nextElementSibling.textContent == questions[count].answer){
+    score++;
+  }
+  count++;
+}
+else{
+  showResult();
+}
+questionFocus.textContent = questions[count].question
+check1.textContent = questions[count].options[0]
+check2.textContent = questions[count].options[1]
+check3.textContent = questions[count].options[2]
+check4.textContent = questions[count].options[3]
+
+
+allRadio.forEach(element => {
+    element.checked=false;
+});
+}
+
+function nextQuestion(){
+init();
+setTimer();
+showQuestion();
+}
+
+function timeOut (){
+nextQuestion();
+}
+
+
+
+let selectedAnswer = "";
+
+questionFocus.textContent = questions[0].question
+check1.textContent = questions[0].options[0]
+check2.textContent = questions[0].options[1]
+check3.textContent = questions[0].options[2]
+check4.textContent = questions[0].options[3]
+
+btnNext.addEventListener("click",(e)=>{
+  e.preventDefault()
+  nextQuestion();
+  
+})
+
+btnQuit.addEventListener("click", (e)=>{
+e.preventDefault();
+showResult();
+})
+

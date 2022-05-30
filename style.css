@@ -6,6 +6,9 @@ body{
     background: linear-gradient(90deg, #85F6B8 0%, rgba(142, 217, 235, 0.85) 99.84%);
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main{
@@ -22,7 +25,7 @@ body{
     min-height: 625px;
 }
 
-.title{
+.title, .title-result{
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 32px;
@@ -30,7 +33,7 @@ body{
     color: #555555;
 }
 
-.question-text{
+.question-text, .email-result{
     margin: 35px 40px;
     padding: 0 15px;
     font-size: 20px;
