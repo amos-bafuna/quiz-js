@@ -69,6 +69,11 @@ let homePage = document.querySelector('#page1');
 let questionPage = document.querySelector('#page2');
 let resultPage = document.querySelector('#page3');
 
+let userName = document.querySelector(".input1").value;
+let userEmail = document.querySelector(".input2").value;
+let errorName = document.querySelector(".errorName");
+let errorEmail = document.querySelector(".errorEmail");
+
 let questionFocus = document.querySelector(".questionFocus");
 let currentQuestion = document.querySelector(".question-number");
 let check1 = document.querySelector(".check1");
@@ -83,25 +88,6 @@ let count = 0;
 let score = 0;
 
 
-let form = document.querySelector("form");
-form.addEventListener("submit", function(e){
-e.preventDefault()
-
-let userName = document.querySelector(".input1").value;
-let userEmail = document.querySelector(".input2").value;
-
-if(!(userName !== '' && userEmail !== '')){
-  errorName.innerHTML = 'N’oubliez pas de renseigner votre nom avant de commencer le Quiz.';
-  errorEmail.innerHTML = 'N’oubliez pas de renseigner votre email avant de commencer le Quiz.';
-}
-/*  else if(validateEmail(userEmail)){
-  errorEmail.innerHTML = 'Veillez saissir un email valide.';
-} */
-else{
-  homePage.style.display = 'none';
-  questionPage.style.display = 'block';
-}
-})
 
 
 
@@ -120,7 +106,8 @@ if (i == 0) {
       clearInterval(id);
       i = 0;
       time = 60;
-      timeOut();
+      //timeOut();
+      btnNext.click();
     } else {
       width -= 1.6666;
       time--;
@@ -141,6 +128,25 @@ if(!valid) {
     return true;
 }
 }
+
+
+let form = document.querySelector("form");
+form.addEventListener("submit", function(e){
+e.preventDefault();
+
+if((userName !== '' && userEmail !== '')){
+  errorName.innerHTML = 'N’oubliez pas de renseigner votre nom avant de commencer le Quiz.';
+  errorEmail.innerHTML = 'N’oubliez pas de renseigner votre email avant de commencer le Quiz.';
+}
+/*  else if(validateEmail(userEmail)){
+  errorEmail.innerHTML = 'Veillez saissir un email valide.';
+} */
+else{
+  homePage.style.display = 'none';
+  questionPage.style.display = 'block';
+  setTimer();
+}
+})
 
 function showResult(){
 let titleResult = document.querySelector('.title-result');
@@ -218,4 +224,3 @@ btnQuit.addEventListener("click", (e)=>{
 e.preventDefault();
 showResult();
 })
-
