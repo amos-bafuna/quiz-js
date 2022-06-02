@@ -63,6 +63,46 @@ let questions = [
     "Noun and Number",
     "Nom and Name"
   ]
+},{
+  numb: 7,
+  question: "A quoi sert le CSS ?",
+  answer: "A créer du style",
+  options: [
+    "A créer des système",
+    "A créer des images",
+    "A naviguer",
+    "A créer du style"
+  ]
+},{
+  numb: 8,
+  question: "Que signifie int en Javascript ?",
+  answer: "Integer",
+  options: [
+    "Int",
+    "String",
+    "Float",
+    "Intire"
+  ]
+},{
+  numb: 9,
+  question: "Lequel de ces événement est faux ?",
+  answer: "non()",
+  options: [
+    "click()",
+    "move()",
+    "submit()",
+    "non()"
+  ]
+},{
+  numb: 10,
+  question: "Que signifie str ?",
+  answer: "string",
+  options: [
+    "string",
+    "strong",
+    "strim",
+    "solid string"
+  ]
 }]
 
 let homePage = document.querySelector('#page1');
@@ -82,18 +122,18 @@ let check3 = document.querySelector(".check3");
 let check4 = document.querySelector(".check4");
 let btnNext = document.querySelector(".btn-next");
 let btnQuit = document.querySelector(".btn-quit");
-let allRadio = document.querySelectorAll("#rad");
+let allRadio = document.querySelectorAll("#radio");
 let radio = document.querySelector("#rad");
+let finalScore = document.querySelector(".final-score");
 let count = 0;
-let score = 0;
-
-
+let scoreFinal = 0;
 
 
 
 // Timer management */
 let i = 0;
 let time = 60;
+timeLeftOut = false;
 function setTimer() {
 if (i == 0) {
   i = 1;
@@ -106,8 +146,8 @@ if (i == 0) {
       clearInterval(id);
       i = 0;
       time = 60;
-      //timeOut();
-      btnNext.click();
+      width = 100;
+      timeOut();
     } else {
       width -= 1.6666;
       time--;
@@ -168,25 +208,26 @@ form.addEventListener("submit", function(e){
 })
 
 function showResult(){
-let titleResult = document.querySelector('.title-result');
-let emailResult = document.querySelector('.email-result');
+  let titleResult = document.querySelector('.title-result');
+  let emailResult = document.querySelector('.email-result');
 
-questionPage.style.display = 'none';
-resultPage.style.display = 'block';
+  questionPage.style.display = 'none';
+  resultPage.style.display = 'block';
 
-titleResult.innerHTML = userName;
-emailResult.innerHTML = userEmail;
-console.log(score);
+  titleResult.innerHTML = userName.value;
+  emailResult.innerHTML = userEmail.value;
+  finalScore.innerHTML = scoreFinal + "/" + questions.length;
+  console.log(scoreFinal);
 }
 
 allRadio.forEach(elem =>{
-elem.addEventListener('click', (e)=>{
-  btnNext.removeAttribute('disabled');
-})
+  elem.addEventListener('click', (e)=>{
+    btnNext.removeAttribute('disabled');
+  })
 })
 
 function init(){
-btnNext.setAttribute('disabled', 'disabled');
+  btnNext.setAttribute('disabled', 'disabled');
 }
 
 function showQuestion(){
@@ -194,13 +235,14 @@ selectedAnswer = document.querySelector("input[type='radio']:checked");
 //console.log(selectedAnswer.nextElementSibling.textContent);
 if(count<questions.length-1){
   if(selectedAnswer.nextElementSibling.textContent == questions[count].answer){
-    score++;
+    scoreFinal++;
   }
   count++;
 }
 else{
   showResult();
 }
+currentQuestion.innerHTML = "Question " + questions[count].numb + "/" + questions.length;
 questionFocus.textContent = questions[count].question
 check1.textContent = questions[count].options[0]
 check2.textContent = questions[count].options[1]
@@ -214,13 +256,13 @@ allRadio.forEach(element => {
 }
 
 function nextQuestion(){
-init();
-setTimer();
-showQuestion();
+  init();
+  setTimer();
+  showQuestion();
 }
 
 function timeOut (){
-nextQuestion();
+  nextQuestion();
 }
 
 
