@@ -69,8 +69,8 @@ let homePage = document.querySelector('#page1');
 let questionPage = document.querySelector('#page2');
 let resultPage = document.querySelector('#page3');
 
-let userName = document.querySelector(".input1").value;
-let userEmail = document.querySelector(".input2").value;
+let userName = document.querySelector("#name");
+let userEmail = document.querySelector("#email");
 let errorName = document.querySelector(".errorName");
 let errorEmail = document.querySelector(".errorEmail");
 
@@ -118,34 +118,53 @@ if (i == 0) {
 }
 }
 
-function validateEmail(email){
-let emailReg = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/i);
-let valid = emailReg.test(email);
 
-if(!valid) {
-    return false;
-} else {
+function validateName(name){
+  let nameRegex = new RegExp(/^[a-zA-Z]+/i);
+  let validName = nameRegex.test(name);
+
+  if(validName){
     return true;
+  }
+  else{
+    return false;
+  }
 }
+
+function validateEmail(email){
+  let emailReg = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/i);
+  let validEmail = emailReg.test(email);
+
+  if(validEmail){
+    return true
+  }
+  else {
+      return false;
+  }
 }
 
 
 let form = document.querySelector("form");
 form.addEventListener("submit", function(e){
-e.preventDefault();
+  e.preventDefault();
 
-if((userName !== '' && userEmail !== '')){
-  errorName.innerHTML = 'N’oubliez pas de renseigner votre nom avant de commencer le Quiz.';
-  errorEmail.innerHTML = 'N’oubliez pas de renseigner votre email avant de commencer le Quiz.';
-}
-/*  else if(validateEmail(userEmail)){
-  errorEmail.innerHTML = 'Veillez saissir un email valide.';
-} */
-else{
-  homePage.style.display = 'none';
-  questionPage.style.display = 'block';
-  setTimer();
-}
+  if((userName.value == '' && userEmail.value == '')){
+    errorName.innerHTML = 'N’oubliez pas de renseigner votre nom avant de commencer le Quiz.';
+    errorEmail.innerHTML = 'N’oubliez pas de renseigner votre email avant de commencer le Quiz.';
+  }
+  else{
+    if(!validateName(userName.value)){
+      errorName.innerHTML = 'Veillez saissir un nom valide!';
+    }
+    else if(!validateEmail(userEmail.value)){
+      errorEmail.innerHTML = 'veillez saisir un email valide!';
+    }
+    else{
+      homePage.style.display = 'none';
+      questionPage.style.display = 'block';
+      setTimer();
+    }
+  }
 })
 
 function showResult(){
