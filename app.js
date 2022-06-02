@@ -103,6 +103,56 @@ let questions = [
     "strim",
     "solid string"
   ]
+},{
+  numb: 11,
+  question: "A quoi sert la méthode length ?",
+  answer: "A trouver la taille d'un élément",
+  options: [
+    "A trouver la taille d'un élément",
+    "A calculer un nombre",
+    "A lire un tableau",
+    "A modifier un tableau"
+  ]
+},{
+  numb: 12,
+  question: "Laquelle de ces fonctions n'existe pas ?",
+  answer: "sumer()",
+  options: [
+    "sum()",
+    "pop()",
+    "push()",
+    "sumer"
+  ]
+},{
+  numb: 13,
+  question: "Qui a inventé le JavaScript ?",
+  answer: "Brendan Eich",
+  options: [
+    "Tim Bernes-Lee",
+    "Brendan Eich",
+    "Steve Jobs",
+    "Lary Page"
+  ]
+},{
+  numb: 14,
+  question: "En quelle année a été inventé le JS ?",
+  answer: "1996",
+  options: [
+    "2020",
+    "2000",
+    "1996",
+    "1986"
+  ]
+},{
+  numb: 15,
+  question: "Quel est la page officiel de JavaScript ?",
+  answer: "MDN",
+  options: [
+    "Openclassrooms",
+    "Google",
+    "Grafikart",
+    "MDN"
+  ]
 }]
 
 let homePage = document.querySelector('#page1');
@@ -140,7 +190,7 @@ if (i == 0) {
   let elem = document.querySelector(".Loading");
   let timeLeft = document.querySelector(".time")
   let width = 100;
-  let id = setInterval(frame, 500);
+  let id = setInterval(frame, 1000);
   function frame() {
     if (width < 1) {
       clearInterval(id);
