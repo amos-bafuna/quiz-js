@@ -241,15 +241,19 @@ form.addEventListener("submit", function(e){
   e.preventDefault();
 
   if((userName.value == '' && userEmail.value == '')){
+    userName.classList.add('errorInput');
+    userEmail.classList.add('errorInput');
     errorName.innerHTML = 'N’oubliez pas de renseigner votre nom avant de commencer le Quiz.';
     errorEmail.innerHTML = 'N’oubliez pas de renseigner votre email avant de commencer le Quiz.';
   }
   else{
     if(!validateName(userName.value)){
+      userName.classList.add('errorInput');
       errorName.innerHTML = 'Veillez saissir un nom valide!';
     }
     else if(!validateEmail(userEmail.value)){
-      errorEmail.innerHTML = 'veillez saisir un email valide!';
+      userEmail.classList.add('errorInput');
+      errorEmail.innerHTML = 'Veillez saisir un email valide!';
     }
     else{
       homePage.style.display = 'none';
@@ -262,9 +266,17 @@ form.addEventListener("submit", function(e){
 function showResult(){
   let titleResult = document.querySelector('.title-result');
   let emailResult = document.querySelector('.email-result');
+  let resultStatus = document.querySelector('.result-status>span');
 
   questionPage.style.display = 'none';
   resultPage.style.display = 'block';
+
+  if(scoreFinal >= 10){
+    resultStatus.classList.add('fa', 'fa-regular', 'fa-circle-check', 'success');
+  }
+  else{
+    resultStatus.classList.add('fa', 'fa-regular', 'fa-circle-xmark', 'wrong');
+  }
 
   titleResult.innerHTML = userName.value;
   emailResult.innerHTML = userEmail.value;
@@ -300,7 +312,6 @@ selectedAnswer = document.querySelector("input[type='radio']:checked");
   check2.textContent = questions[count].options[1]
   check3.textContent = questions[count].options[2]
   check4.textContent = questions[count].options[3]
-
 
   allRadio.forEach(element => {
       element.checked=false;

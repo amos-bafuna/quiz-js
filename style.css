@@ -46,6 +46,10 @@ form{
     font-family: 'Inter', sans-serif;
 }
 
+input:focus-visible{
+    outline: none;
+}
+
 .form-group{
     margin:  30px 40px;
     padding-top: 10px;
@@ -69,6 +73,10 @@ form{
 .Error{
     font-size: 12px;
     color: red;
+}
+
+.errorInput{
+    border: solid #ff0000 1px;
 }
 
 .group-submit{
