@@ -183,29 +183,31 @@ let scoreFinal = 0;
 // Timer management */
 let i = 0;
 let time = 60;
-timeLeftOut = false;
 function setTimer() {
-if (i == 0) {
-  i = 1;
-  let elem = document.querySelector(".Loading");
+  let loading = document.querySelector(".Loading");
   let timeLeft = document.querySelector(".time")
   let width = 100;
-  let id = setInterval(frame, 1000);
+  let id = setInterval(frame, 500);
+
   function frame() {
+    btnNext.addEventListener('click', function(){
+      clearInterval(id);
+      time = 60;
+      width = 100;
+    })
+
     if (width < 1) {
       clearInterval(id);
-      i = 0;
       time = 60;
       width = 100;
       timeOut();
     } else {
       width -= 1.6666;
       time--;
-      elem.style.width = width + "%";
+      loading.style.width = width + "%";
       timeLeft.innerHTML = time;
     }
   }
-}
 }
 
 
@@ -267,7 +269,6 @@ function showResult(){
   titleResult.innerHTML = userName.value;
   emailResult.innerHTML = userEmail.value;
   finalScore.innerHTML = scoreFinal + "/" + questions.length;
-  console.log(scoreFinal);
 }
 
 allRadio.forEach(elem =>{
@@ -282,27 +283,28 @@ function init(){
 
 function showQuestion(){
 selectedAnswer = document.querySelector("input[type='radio']:checked");
-//console.log(selectedAnswer.nextElementSibling.textContent);
-if(count<questions.length-1){
-  if(selectedAnswer.nextElementSibling.textContent == questions[count].answer){
-    scoreFinal++;
+  if(count<questions.length-1){
+    if(selectedAnswer != null){
+      if(selectedAnswer.nextElementSibling.textContent == questions[count].answer){
+        scoreFinal++;
+      }
+    }
+    count++;
   }
-  count++;
-}
-else{
-  showResult();
-}
-currentQuestion.innerHTML = "Question " + questions[count].numb + "/" + questions.length;
-questionFocus.textContent = questions[count].question
-check1.textContent = questions[count].options[0]
-check2.textContent = questions[count].options[1]
-check3.textContent = questions[count].options[2]
-check4.textContent = questions[count].options[3]
+  else{
+    showResult();
+  }
+  currentQuestion.innerHTML = "Question " + questions[count].numb + "/" + questions.length;
+  questionFocus.textContent = questions[count].question
+  check1.textContent = questions[count].options[0]
+  check2.textContent = questions[count].options[1]
+  check3.textContent = questions[count].options[2]
+  check4.textContent = questions[count].options[3]
 
 
-allRadio.forEach(element => {
-    element.checked=false;
-});
+  allRadio.forEach(element => {
+      element.checked=false;
+  });
 }
 
 function nextQuestion(){
