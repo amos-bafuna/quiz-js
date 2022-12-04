@@ -78,7 +78,7 @@ let questions = [
   question: "Que signifie int en Javascript ?",
   answer: "Integer",
   options: [
-    "Int",
+    "Integer",
     "String",
     "Float",
     "Intire"
@@ -121,7 +121,7 @@ let questions = [
     "sum()",
     "pop()",
     "push()",
-    "sumer"
+    "sumer()"
   ]
 },{
   numb: 13,
@@ -263,6 +263,7 @@ form.addEventListener("submit", function(e){
   }
 })
 
+
 function showResult(){
   let titleResult = document.querySelector('.title-result');
   let emailResult = document.querySelector('.email-result');
@@ -289,12 +290,15 @@ allRadio.forEach(elem =>{
   })
 })
 
+
 function init(){
   btnNext.setAttribute('disabled', 'disabled');
 }
 
+
 function showQuestion(){
 selectedAnswer = document.querySelector("input[type='radio']:checked");
+
   if(count<questions.length-1){
     if(selectedAnswer != null){
       if(selectedAnswer.nextElementSibling.textContent == questions[count].answer){
@@ -308,21 +312,23 @@ selectedAnswer = document.querySelector("input[type='radio']:checked");
   }
   currentQuestion.innerHTML = "Question " + questions[count].numb + "/" + questions.length;
   questionFocus.textContent = questions[count].question
-  check1.textContent = questions[count].options[0]
-  check2.textContent = questions[count].options[1]
-  check3.textContent = questions[count].options[2]
-  check4.textContent = questions[count].options[3]
+  check1.textContent = questions[count].options[0];
+  check2.textContent = questions[count].options[1];
+  check3.textContent = questions[count].options[2];
+  check4.textContent = questions[count].options[3];
 
   allRadio.forEach(element => {
       element.checked=false;
   });
 }
 
+
 function nextQuestion(){
   init();
   setTimer();
   showQuestion();
 }
+
 
 function timeOut (){
   nextQuestion();
@@ -345,6 +351,6 @@ btnNext.addEventListener("click",(e)=>{
 })
 
 btnQuit.addEventListener("click", (e)=>{
-e.preventDefault();
-showResult();
+  e.preventDefault();
+  showResult();
 })

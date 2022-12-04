@@ -130,6 +130,10 @@ input:focus-visible{
     color: #555555;
 }
 
+input[type="radio"]:checked{
+    accent-color: green;
+}
+
 .group-question-btn{
     display: flex;
     justify-content: space-between;
